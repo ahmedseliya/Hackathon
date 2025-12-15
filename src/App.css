@@ -1,0 +1,1108 @@
+/* Main Dashboard Container - FIXED */
+.app-container {
+  min-height: 100vh;
+  background: var(--primary-dark) !important;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Navigation - FIXED */
+.navbar-glass {
+  background: rgba(26, 26, 26, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+  padding: 1rem 0 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+.nav-brand {
+  font-weight: 800 !important;
+  font-size: 1.8rem !important;
+  color: var(--text-light) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.nav-brand span {
+  font-size: 2rem !important;
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.25rem !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-light) !important;
+  background: rgba(58, 134, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* MAIN CONTENT - FIXED POSITIONING */
+.dashboard-content {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 2rem 1.5rem !important;
+  background: transparent !important;
+}
+
+/* WELCOME CARD - FIXED */
+.welcome-card {
+  background: var(--grey-gradient) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 20px !important;
+  margin-bottom: 2rem !important;
+  overflow: hidden !important;
+}
+
+.welcome-card .card-body {
+  padding: 2rem !important;
+  color: var(--text-light) !important;
+}
+
+.welcome-card h1,
+.welcome-card p {
+  color: var(--text-light) !important;
+}
+
+/* STATS GRID - FIXED 4 Column Layout */
+.stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Stats Cards - FIXED TEXT VISIBILITY */
+.stat-card {
+  background: var(--card-bg-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+/* FIXED: All text inside cards should be light */
+.stat-card * {
+  color: var(--text-light) !important;
+}
+
+.stat-card .text-muted {
+  color: var(--text-muted) !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--accent-blue) !important;
+}
+
+.stat-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: var(--accent-blue) !important;
+}
+
+.stat-icon {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.8rem !important;
+  background: var(--tertiary-dark) !important;
+  color: var(--accent-blue) !important;
+  margin-bottom: 1rem !important;
+}
+
+/* MAIN LAYOUT - REORGANIZED */
+.main-layout {
+  display: grid !important;
+  grid-template-rows: auto auto auto !important; /* Three rows: BMI, Meal Tracker, Exercises */
+  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* BMI Calculator - FULL WIDTH TOP ROW */
+.bmi-calculator-container {
+  grid-column: 1 / -1 !important; /* Takes full width */
+  width: 100% !important;
+}
+
+/* Meal Tracker - FULL WIDTH MIDDLE ROW */
+.meal-tracker-container {
+  grid-column: 1 / -1 !important; /* Takes full width */
+  width: 100% !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* Exercise Tracker - FULL WIDTH BOTTOM ROW */
+.exercise-tracker-container {
+  grid-column: 1 / -1 !important; /* Takes full width */
+  width: 100% !important;
+}
+
+/* BMI Calculator - FULL SIZE */
+.bmi-calculator {
+  background: var(--card-bg-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  height: auto !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+/* BMI Calculator specific layout */
+.bmi-content {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2rem !important;
+  margin-top: 1rem !important;
+}
+
+.bmi-form-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.bmi-ai-section {
+  background: rgba(26, 26, 26, 0.7) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  border-left: 4px solid var(--accent-blue) !important;
+}
+
+.bmi-input-group {
+  margin-bottom: 1.5rem !important;
+}
+
+.bmi-input-group label {
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text-light) !important;
+  font-weight: 500 !important;
+}
+
+.bmi-input-row {
+  display: flex !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.bmi-input-row > div {
+  flex: 1 !important;
+}
+
+/* Exercise Tracker - FULL SIZE */
+.exercise-tracker {
+  background: var(--card-bg-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  height: auto !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+/* Exercise Stats - Move to top of exercise tracker */
+.exercise-stats {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 1rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.exercise-stat-card {
+  background: var(--tertiary-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  text-align: center !important;
+}
+
+.exercise-stat-card h3 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text-light) !important;
+}
+
+.exercise-stat-card p {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem !important;
+  margin: 0 !important;
+}
+
+/* Tables - FIXED TEXT VISIBILITY */
+.modern-table {
+  background: var(--tertiary-dark) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--card-border) !important;
+  width: 100% !important;
+  margin: 1rem 0 !important;
+}
+
+.modern-table th {
+  background: var(--secondary-dark) !important;
+  color: var(--text-light) !important;
+  font-weight: 600 !important;
+  padding: 1rem !important;
+  border: none !important;
+}
+
+.modern-table td {
+  padding: 1rem !important;
+  color: var(--text-muted) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+.modern-table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.modern-table tr:hover {
+  background: rgba(58, 134, 255, 0.1) !important;
+}
+
+/* Buttons - FIXED */
+.btn-modern {
+  background: var(--tertiary-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  color: var(--text-light) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-modern:hover {
+  background: var(--accent-blue) !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+.btn-modern::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.btn-modern:hover::before {
+  left: 100% !important;
+}
+
+.btn-primary-modern {
+  background: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  color: white !important;
+}
+
+.btn-success-modern {
+  background: var(--accent-green) !important;
+  border-color: var(--accent-green) !important;
+  color: white !important;
+}
+
+/* Badges - FIXED TEXT */
+.badge-modern {
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  background: var(--tertiary-dark) !important;
+  color: var(--text-light) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+/* Forms - FIXED TEXT */
+.form-modern-control {
+  background: var(--tertiary-dark) !important;
+  border: 2px solid var(--card-border) !important;
+  color: var(--text-light) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  width: 100% !important;
+}
+
+.form-modern-control:focus {
+  background: var(--tertiary-dark) !important;
+  border-color: var(--accent-blue) !important;
+  color: var(--text-light) !important;
+  box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2) !important;
+}
+
+/* Footer - FIXED */
+.footer-modern {
+  background: var(--secondary-dark) !important;
+  border-top: 1px solid var(--card-border) !important;
+  padding: 2rem 0 !important;
+  margin-top: 2px;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.footer-modern * {
+  color: var(--text-light) !important;
+}
+
+/* Progress Bars - FIXED */
+.custom-progress {
+  height: 8px !important;
+  background: var(--tertiary-dark) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+.custom-progress-bar {
+  height: 100% !important;
+  background: var(--accent-blue) !important;
+  border-radius: 10px !important;
+}
+
+/* QUICK ACTIONS - FIXED */
+.quick-actions {
+  background: var(--card-bg-dark) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.quick-actions * {
+  color: var(--text-light) !important;
+}
+
+.actions-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+/* MOTIVATION CARD - FIXED */
+.motivation-card {
+  background: linear-gradient(135deg, var(--tertiary-dark), var(--secondary-dark)) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  margin-top: 30px;
+}
+
+.motivation-card * {
+  color: var(--text-light) !important;
+}
+
+/* FIX: Remove Bootstrap's default card styles */
+.card {
+  background: transparent !important;
+  border: none !important;
+}
+
+.card-body {
+  background: transparent !important;
+  color: var(--text-light) !important;
+}
+
+.card-title, .card-header {
+  color: var(--text-light) !important;
+  background: transparent !important;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 1rem !important;
+  }
+  
+  .welcome-card .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .stat-card,
+  .bmi-calculator,
+  .exercise-tracker,
+  .quick-actions {
+    padding: 1rem !important;
+  }
+  
+  .exercise-stats {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .bmi-content {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-layout {
+    grid-template-rows: auto auto auto !important;
+  }
+}
+
+/* FIX: Make motivation text completely white */
+.motivation-card h4,
+.motivation-card p {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Force white text in motivation card */
+.motivation-card .text-light {
+  color: #ffffff !important;
+}
+
+/* Make text more visible */
+.motivation-card .lead {
+  font-size: 1.25rem;
+  font-weight: 500;
+  opacity: 0.95 !important;
+}
+
+/* AI Detection Styles */
+.dropzone {
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.dropzone:hover {
+  background: #e9ecef;
+  border-color: #667eea !important;
+}
+
+/* Webcam styling */
+video {
+  border-radius: 8px;
+}
+
+/* Add this to your CSS file or in a style tag */
+
+/* Main card adjustments */
+.stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  min-height: 600px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Form section styling */
+.form-modern {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  min-height: 500px;
+}
+
+/* Form controls styling */
+.form-modern-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.form-modern-control:focus {
+  border-color: #4dabf7;
+  box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+  outline: none;
+}
+
+/* Results section styling */
+.results-section {
+  background: linear-gradient(135deg, rgba(25, 118, 210, 0.08) 0%, rgba(13, 71, 161, 0.08) 100%);
+  border: 1px solid rgba(25, 118, 210, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adjust the row layout */
+.row.g-3 {
+  align-items: stretch;
+}
+
+.col-md-6 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* BMI display styling */
+.position-relative.d-inline-block.mb-4 {
+  margin: 1.5rem 0;
+}
+
+.display-1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge styling */
+.badge-modern {
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 0.35rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Progress bar styling */
+.custom-progress {
+  background-color: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.custom-progress .progress-bar {
+  border-radius: 6px;
+  transition: width 1s ease-in-out;
+}
+
+/* Accordion styling */
+.accordion-item {
+  border: none !important;
+  margin-bottom: 0.75rem;
+}
+
+.accordion-button {
+  background-color: rgba(248, 249, 250, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgba(248, 249, 250, 1) !important;
+  color: #212529;
+  box-shadow: none;
+}
+
+.accordion-body {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 1rem !important;
+}
+
+/* Button styling */
+.btn-modern {
+  border-radius: 10px;
+  padding: 0.875rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modern:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-modern:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(77, 171, 247, 0.3);
+}
+
+.btn-primary-modern {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+  color: white;
+}
+
+.btn-primary-modern:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+}
+
+/* Empty state styling */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 {
+  padding: 3rem 2rem !important;
+  background: linear-gradient(135deg, rgba(248, 249, 250, 0.8) 0%, rgba(233, 236, 239, 0.8) 100%);
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row.g-3 {
+    flex-direction: column;
+  }
+  
+  .col-md-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-modern,
+  .results-section {
+    min-height: auto;
+  }
+  
+  .display-1 {
+    font-size: 3.5rem;
+  }
+  
+  .stat-card {
+    min-height: auto;
+  }
+}
+
+/* Animation for results */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-div[animate] {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Advanced options styling */
+.motion-div[initial] {
+  overflow: hidden;
+}
+
+.mt-3.p-3.border.rounded {
+  background: rgba(248, 249, 250, 0.7);
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Grid items in results */
+.row.g-3 .col-6,
+.row.g-2 .col-6 {
+  display: flex;
+}
+
+.p-2.border.rounded {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease;
+}
+
+.p-2.border.rounded:hover {
+  background: rgba(248, 249, 250, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Card header styling */
+.card-header.border-0.bg-transparent {
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.card-title.mb-0 {
+  font-size: 1.5rem;
+  color: #1a237e;
+}
+
+/* Badge groups */
+.d-flex.flex-wrap.gap-2 {
+  gap: 0.5rem !important;
+}
+
+/* Make the empty state section have charcoal/black background */
+.col-md-6:last-child > .d-flex.flex-column.align-items-center.justify-content-center.h-100 {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  padding: 3rem 2rem !important;
+  color: white !important;
+}
+
+/* Style the brain icon for dark background */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .display-1.mb-3 {
+  color: rgba(255, 255, 255, 0.2) !important;
+  opacity: 1 !important;
+}
+
+/* Style the heading for dark background */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .h5.fw-semibold {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* Style the paragraph text for dark background */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+  line-height: 1.5;
+}
+
+/* Style badges for dark background */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .badge-modern {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Specific badge colors for dark theme */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .bg-info.badge-modern {
+  background-color: rgba(23, 162, 184, 0.3) !important;
+  color: #a6e3f1 !important;
+  border-color: rgba(23, 162, 184, 0.5) !important;
+}
+
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .bg-success.badge-modern {
+  background-color: rgba(40, 167, 69, 0.3) !important;
+  color: #8affa6 !important;
+  border-color: rgba(40, 167, 69, 0.5) !important;
+}
+
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .bg-warning.badge-modern {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+  color: #ffeaa7 !important;
+  border-color: rgba(255, 193, 7, 0.5) !important;
+}
+
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .bg-danger.badge-modern {
+  background-color: rgba(220, 53, 69, 0.3) !important;
+  color: #ffa8a8 !important;
+  border-color: rgba(220, 53, 69, 0.5) !important;
+}
+
+/* Hover effect for badges */
+.d-flex.flex-column.align-items-center.justify-content-center.h-100 .badge-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Also make the results section (when BMI is calculated) match the charcoal theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
+/* Style text inside results section for dark theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .fw-bold,
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .fw-semibold,
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 h4,
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 h5 {
+  color: white !important;
+}
+
+/* Style progress bar for dark theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .custom-progress {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Style accordion for dark theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .accordion-button {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .accordion-body {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top: none !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Style border boxes in accordion for dark theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .p-2.border.rounded {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .p-2.border.rounded .text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Style badges in results section for dark theme */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .badge-modern {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .bg-info.badge-modern {
+  background-color: rgba(23, 162, 184, 0.3) !important;
+  color: #a6e3f1 !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .bg-warning.badge-modern {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+  color: #ffeaa7 !important;
+}
+
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .bg-light.badge-modern {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+/* Make sure the BMI number stands out */
+.col-md-6:last-child > .motion-div > .p-4.rounded-3.h-100 .display-1.fw-bold.mb-0 {
+  color: white !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Override any inline styles */
+[style*="background: linear-gradient(135deg, rgba(25, 118, 210, 0.08)"],
+[style*="border: '1px solid rgba(25, 118, 210, 0.1)'"] {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+/* Main card styling */
+.stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  min-height: 600px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Form section - LEFT SIDE (White background) */
+.form-modern {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  min-height: 500px;
+}
+
+.form-modern-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.form-modern-control:focus {
+  border-color: #4dabf7;
+  box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+  outline: none;
+}
+
+/* Results section - RIGHT SIDE (Charcoal background) */
+.results-section-dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
+/* Empty State - RIGHT SIDE */
+.empty-state-dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
+/* Text colors for dark theme */
+.text-white {
+  color: white !important;
+}
+
+.text-light {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Progress bar for dark theme */
+.custom-progress-dark {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.custom-progress-dark .progress-bar {
+  border-radius: 6px;
+}
+
+/* Accordion for dark theme */
+.accordion-dark {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.accordion-dark:not(.collapsed) {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+.accordion-body-dark {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: none !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Boxes in accordion */
+.box-dark {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+/* Badges for dark theme */
+.badge-modern-dark {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 0.35rem 1rem;
+  font-size: 0.75rem;
+}
+
+.bg-info.badge-modern-dark {
+  background-color: rgba(23, 162, 184, 0.3) !important;
+  color: #a6e3f1 !important;
+}
+
+.bg-success.badge-modern-dark {
+  background-color: rgba(40, 167, 69, 0.3) !important;
+  color: #8affa6 !important;
+}
+
+.bg-warning.badge-modern-dark {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+  color: #ffeaa7 !important;
+}
+
+.bg-danger.badge-modern-dark {
+  background-color: rgba(220, 53, 69, 0.3) !important;
+  color: #ffa8a8 !important;
+}
+
+.bg-light.badge-modern-dark {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+/* Button styling */
+.btn-modern {
+  border-radius: 10px;
+  padding: 0.875rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-modern {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+  color: white;
+}
+
+.btn-primary-modern:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(77, 171, 247, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row.g-3 {
+    flex-direction: column;
+  }
+  
+  .col-md-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-modern,
+  .results-section-dark,
+  .empty-state-dark {
+    min-height: auto;
+  }
+  
+  .display-1 {
+    font-size: 3.5rem;
+  }
+  
+  .stat-card {
+    min-height: auto;
+  }
+}
