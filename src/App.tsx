@@ -8,12 +8,17 @@ import BMICalculator from './components/BMICalculator';
 import MealTracker from './components/MealTracker';
 import ExerciseTracker from './components/ExerciseTracker';
 
-
 function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('home');
   const controls = useAnimation();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
+
+  // Create refs for smooth scrolling
+  const homeSectionRef = useRef<HTMLDivElement>(null);
+  const mealSectionRef = useRef<HTMLDivElement>(null);
+  const exerciseSectionRef = useRef<HTMLDivElement>(null);
+  const bmiSectionRef = useRef<HTMLDivElement>(null);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -43,7 +48,49 @@ function App() {
     }
   }, [controls, isInView]);
 
-  
+  // Smooth scroll function
+  const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement | null>) => {
+    if (sectionRef.current) {
+      const offset = 80; // Adjust based on your navbar height
+      const elementPosition = sectionRef.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Handle navigation click
+  const handleNavClick = (item: string) => {
+    setActiveTab(item.toLowerCase());
+    
+    switch(item.toLowerCase()) {
+      case 'home':
+        scrollToSection(homeSectionRef);
+        break;
+      case 'dashboard':
+        scrollToSection(exerciseSectionRef);
+        break;
+      case 'nutrition':
+        scrollToSection(mealSectionRef);
+        break;
+      case 'workouts':
+        scrollToSection(exerciseSectionRef);
+        break;
+      case 'bmi calculator':
+        scrollToSection(bmiSectionRef);
+        break;
+      default:
+        // For logout, scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Animated Background */}
@@ -101,7 +148,7 @@ function App() {
       />
 
       {/* Navigation */}
-      <Navbar expand="lg" className="navbar-glass">
+      <Navbar expand="lg" className="navbar-glass" fixed="top">
         <Container fluid>
           <motion.div
             initial={{ x: -20, opacity: 0 }}
@@ -116,8 +163,8 @@ function App() {
           
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
-            <Nav className="mx-auto">
-              {['Dashboard', 'Workouts', 'Nutrition', 'Progress', 'Community'].map((item, idx) => (
+            <Nav className="mx-auto me-lg-5">
+              {['Home', 'Dashboard','BMI Calculator', 'Nutrition','Workouts', 'Logout'].map((item, idx) => (
                 <motion.div
                   key={item}
                   initial={{ y: -10, opacity: 0 }}
@@ -125,179 +172,106 @@ function App() {
                   transition={{ delay: idx * 0.1 }}
                 >
                   <Nav.Link 
-                    href={`#${item.toLowerCase()}`}
+                    href={`#${item.toLowerCase().replace(' ', '-')}`}
                     className={`mx-1 fw-semibold ${activeTab === item.toLowerCase() ? 'active' : ''}`}
-                    onClick={() => setActiveTab(item.toLowerCase())}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item);
+                    }}
                   >
                     {item}
                   </Nav.Link>
                 </motion.div>
               ))}
             </Nav>
-            
-            <motion.div
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="d-flex align-items-center"
-            >
-              <Button variant="outline-primary" className="btn-modern me-2">
-                🔔 Notifications
-              </Button>
-              <Button variant="primary" className="btn-modern btn-primary-modern">
-                👤 Profile
-              </Button>
-            </motion.div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* Main Content - FIXED POSITIONING */}
-      <div className="dashboard-content" ref={ref}>
-        {/* Welcome Header */}
-        <motion.div
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-4"
-        >
-          <Card className="welcome-card border-0">
-            <Card.Body className="p-4">
-              <Row className="align-items-center">
-                <Col md={8}>
-                  <motion.h1 
-                    className="display-5 fw-bold mb-3 text-gradient"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    Welcome Back, Champion! 🏆
-                  </motion.h1>
-                  <motion.p 
-                    className="lead mb-0 text-muted"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    You're crushing your fitness goals. Keep up the amazing work!
-                  </motion.p>
-                </Col>
-                <Col md={4} className="text-md-end mt-3 mt-md-0">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="d-flex flex-wrap justify-content-end gap-2"
-                  >
-                    <Button size="lg" className="btn-modern me-2">
-                      ➕ Quick Log
-                    </Button>
-                    <Button size="lg" className="btn-modern btn-primary-modern">
-                      📈 Analytics
-                    </Button>
-                  </motion.div>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </motion.div>
-
-        
-
-        {/* Quick Actions */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="quick-actions mb-4"
-        >
-          <h5 className="fw-bold mb-3">🚀 Quick Actions</h5>
-          <div className="actions-grid">
-            {[
-              { label: "Log Meal", icon: "🍽️", color: "primary" },
-              { label: "Start Workout", icon: "💪", color: "success" },
-              { label: "Track Water", icon: "💧", color: "info" },
-              { label: "Log Weight", icon: "⚖️", color: "warning" },
-              { label: "View Progress", icon: "📈", color: "dark" }
-            ].map((action, idx) => (
-              <motion.div
-                key={action.label}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  variant={action.color as any} 
-                  className={`btn-modern ${action.color === 'dark' ? '' : 'btn-' + action.color + '-modern'} w-100 d-flex align-items-center justify-content-center`}
-                >
-                  <span className="me-2 fs-5">{action.icon}</span> 
-                  {action.label}
-                </Button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      {/* Main Content - Add padding top to account for fixed navbar */}
+      <div className="dashboard-content" ref={ref} style={{ paddingTop: '80px' }}>
+        {/* Welcome Header with ref for Home navigation */}
+        <div ref={homeSectionRef}>
+          <motion.div
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4"
+          >
+            <Card className="welcome-card border-0">
+              <Card.Body className="p-4">
+                <Row className="align-items-center">
+                  <Col md={8}>
+                    <motion.h1 
+                      className="display-5 fw-bold mb-3 text-gradient"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Welcome Back, Champion! 🏆
+                    </motion.h1>
+                    <motion.p 
+                      className="lead mb-0 text-muted"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      You're crushing your fitness goals. Keep up the amazing work!
+                    </motion.p>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </motion.div>
+        </div>
 
         {/* MAIN LAYOUT - CORRECT POSITIONING */}
         <div className="main-layout">
           {/* Left Column - Meal Tracker */}
-          <div className="meal-tracker-container">
+          <div ref={mealSectionRef} className="meal-tracker-container">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
+              <div className="section-header">
+                <h3 className="fw-bold mb-4">🍎 Nutrition Tracker</h3>
+              </div>
               <MealTracker />
             </motion.div>
           </div>
 
-          {/* Right Column - BMI & Exercise - CORRECT POSITION */}
+          {/* Right Column - BMI & Exercise */}
           <div className="sidebar-column">
-            {/* BMI Calculator - FIXED POSITION */}
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="bmi-calculator"
-            >
-              <BMICalculator />
-            </motion.div>
+            {/* BMI Calculator with ref for scrolling */}
+            <div ref={bmiSectionRef} className="bmi-calculator">
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7 }}
+              >
+                <div className="section-header">
+                  <h3 className="fw-bold mb-4">⚖️ BMI Calculator</h3>
+                </div>
+                <BMICalculator />
+              </motion.div>
+            </div>
             
-            {/* Exercise Tracker - FIXED POSITION */}
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="exercise-tracker"
-            >
-              <ExerciseTracker />
-            </motion.div>
+            {/* Exercise Tracker with ref for scrolling */}
+            <div ref={exerciseSectionRef} className="exercise-tracker">
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                <div className="section-header">
+                  <h3 className="fw-bold mb-4">💪 Exercise Tracker</h3>
+                </div>
+                <ExerciseTracker />
+              </motion.div>
+            </div>
           </div>
         </div>
-
-        {/* Motivation Quote */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="motivation-card"
-        >
-          <motion.div
-            animate={{ 
-              scale: [1, 1.02, 1],
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <h4 className="fw-bold mb-3">💪 Today's Motivation</h4>
-            <p className="lead mb-0 text-muted">
-              "The only bad workout is the one that didn't happen. 
-              Every rep brings you closer to your goals."
-            </p>
-          </motion.div>
-        </motion.div>
       </div>
 
       {/* Footer */}

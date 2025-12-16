@@ -485,3 +485,118 @@ select {
   background-color: transparent !important;
 }
 
+/* FIX FOR EXERCISE TRACKER TABLE VISIBILITY - DIRECT SELECTORS */
+.stat-card .modern-table td {
+  color: #ffffff !important;
+}
+
+.stat-card .modern-table td,
+.stat-card .modern-table td *:not(.text-dark) {
+  color: #ffffff !important;
+}
+
+/* Fix all text in table */
+.stat-card .modern-table tbody tr td {
+  color: #0a0a0a !important;
+}
+
+/* Fix Exercise name */
+.stat-card .modern-table .fw-semibold {
+  color: #0a0a0a !important;
+}
+
+/* Fix Heart Rate specifically */
+.stat-card .modern-table tbody tr td:nth-child(6) {
+  color: #0a0a0a !important;
+}
+
+.stat-card .modern-table tbody tr td:nth-child(6) span {
+  color: #0a0a0a !important;
+}
+
+/* Fix delete button */
+.stat-card .btn-outline-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  opacity: 1 !important;
+  display: flex !important;
+}
+
+/* Even simpler - target ALL table text */
+.modern-table td,
+.modern-table td span:not(.text-dark),
+.modern-table td div:not(.text-dark) {
+  color:  #0a0a0a !important;
+}
+
+/* Nuclear option - force everything in the table to be white */
+.table td, 
+.table th,
+.table span,
+.table div,
+.table *:not(.text-dark) {
+  color: #ffffff !important;
+}
+
+/* Delete button nuclear fix */
+button[title="Delete Exercise"],
+button.btn-outline-danger {
+  background-color: rgba(220, 53, 69, 0.4) !important;
+  border: 2px solid #dc3545 !important;
+  color: #dc3545 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Heart Rate text specifically */
+td .d-flex.align-items-center.gap-2 span {
+  color: #0a0a0a !important;
+  font-weight: 500;
+}
+
+/* App.css */
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  background: linear-gradient(45deg, #3a86ff, #00ff9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(58, 134, 255, 0.2);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Additional styling for better visual hierarchy */
+.bmi-calculator,
+.exercise-tracker,
+.meal-tracker-container {
+  scroll-margin-top: 100px; /* Adjust based on your navbar height */
+}
+
+/* Navigation active state */
+.nav-link.active {
+  color: #3a86ff !important;
+  font-weight: bold !important;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 15%;
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(45deg, #3a86ff, #00ff9d);
+  border-radius: 2px;
+}

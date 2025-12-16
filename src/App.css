@@ -34,7 +34,7 @@
 .nav-link {
   color: var(--text-muted) !important;
   font-weight: 500 !important;
-  padding: 0.5rem 1rem !important;
+  padding: 0.7rem 1rem !important;
   margin: 0 0.25rem !important;
   border-radius: 10px !important;
   transition: all 0.3s ease !important;
@@ -60,7 +60,7 @@
   background: var(--grey-gradient) !important;
   border: 1px solid var(--card-border) !important;
   border-radius: 20px !important;
-  margin-bottom: 2rem !important;
+  margin-top: 20px;
   overflow: hidden !important;
 }
 
@@ -72,6 +72,13 @@
 .welcome-card h1,
 .welcome-card p {
   color: var(--text-light) !important;
+  margin-left: 310px;
+  width: 1000px;
+}
+
+.welcome-card p {
+  justify-content: center;
+  margin-left: 370px;
 }
 
 /* STATS GRID - FIXED 4 Column Layout */
@@ -178,7 +185,8 @@
   border-radius: 16px !important;
   padding: 1.5rem !important;
   height: auto !important;
-  margin: 0 !important;
+  margin: 0 ;
+  margin-bottom: 65px;
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
