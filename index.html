@@ -11,3 +11,42 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
+java
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: circle-area-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: circle-area
+  template:
+    metadata:
+      labels:
+        app: circle-area
+    spec:
+      containers:
+        - name: circle-area-container
+          image: anamkazi/circle-area:1.0
+
+python
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-odd-even-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-odd-even
+  template:
+    metadata:
+      labels:
+        app: python-odd-even
+    spec:
+      containers:
+        - name: python-container
+          image: anamkazi/python-odd-even:1.0
+
